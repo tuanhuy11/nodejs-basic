@@ -4,20 +4,23 @@
 
 import express from 'express';
 import configViewEngine from './congfigs/ViewEngine';
+import initWebRoute from './route/web';
+// import connection from './congfigs/connectDB;'
+
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT;
 
+// hỗ trợ xử lý lấy data từ phía client lên server
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Set up view engine
 configViewEngine(app);
 
-app.get('/', (req, res) => {
-  res.render('index.ejs')
-});
-
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, './index.html'));
-});
+// init web Route
+initWebRoute(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
