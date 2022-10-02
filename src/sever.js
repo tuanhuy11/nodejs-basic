@@ -6,6 +6,7 @@ import express from 'express';
 import configViewEngine from './congfigs/ViewEngine';
 import initWebRoute from './route/web';
 // import connection from './congfigs/connectDB;'
+import initAPIRoute from './route/api';
 
 require('dotenv').config();
 
@@ -21,6 +22,9 @@ configViewEngine(app);
 
 // init web Route
 initWebRoute(app);
+
+// init api route
+initAPIRoute(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
